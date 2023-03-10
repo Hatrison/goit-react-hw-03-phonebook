@@ -37,11 +37,10 @@ export class App extends Component {
       return;
     }
     values.id = nanoid();
-    const contacts = [values, ...this.state.contacts];
 
-    this.setState({
-      contacts,
-    });
+    this.setState(({ contacts }) => ({
+      contacts: [values, ...contacts],
+    }));
   };
 
   onChange = event => {
@@ -52,10 +51,9 @@ export class App extends Component {
   };
 
   onDelete = id => {
-    const contacts = this.state.contacts.filter(contact => contact.id !== id);
-    this.setState({
-      contacts,
-    });
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== id),
+    }));
   };
 
   render() {
